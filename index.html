@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Love Letter</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="envelope-wrapper">
+
+        <div class="envelope">
+
+            <div class="flap"></div>
+
+            <div class="letter">
+                <p>To: My Crush ❤️</p>
+
+                <h2>I Love You Crush 💗</h2>
+
+                <p>
+                    You make my world more beautiful.
+                    Every time I see you, I smile. ❤️
+                </p>
+
+                <p>
+                    Always stay happy and keep smiling. 🌸
+                </p>
+            </div>
+
+            <div class="pocket"></div>
+
+        </div>
+
+        <p class="click-text">Click the envelope 💌</p>
+
+    </div>
+
+
+    <script>
+
+        const envelope = document.querySelector(".envelope");
+
+        envelope.addEventListener("click", () => {
+            envelope.classList.toggle("open");
+        });
+
+    </script>
+
+</body>
+</html>

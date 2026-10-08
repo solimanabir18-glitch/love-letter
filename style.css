@@ -1,0 +1,331 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #ffd6e5,
+        #f8b6cf
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   ENVELOPE WRAPPER
+========================= */
+
+.envelope-wrapper {
+    text-align: center;
+    perspective: 1000px;
+}
+
+
+/* =========================
+   ENVELOPE
+========================= */
+
+.envelope {
+    position: relative;
+
+    width: 320px;
+    height: 220px;
+
+    background: #ff4f7b;
+
+    cursor: pointer;
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.20);
+
+    transition: transform 0.3s ease;
+
+    /* Important */
+    overflow: visible;
+}
+
+
+/* Hover */
+
+.envelope:hover {
+    transform: translateY(-5px);
+}
+
+
+/* =========================
+   FRONT COVER
+   This hides the letter
+   when envelope is closed
+========================= */
+
+.envelope::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #ff4f7b;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   LETTER
+========================= */
+
+.letter {
+    position: absolute;
+
+    width: 280px;
+    height: 190px;
+
+    left: 20px;
+    top: 15px;
+
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 4px;
+
+    text-align: left;
+
+    overflow: hidden;
+
+    /*
+      Letter stays behind
+      the envelope when closed
+    */
+    z-index: 1;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.10);
+
+    transition:
+        transform 0.8s ease,
+        box-shadow 0.8s ease;
+}
+
+
+/* =========================
+   LETTER TITLE
+========================= */
+
+.letter h2 {
+    color: #ff4775;
+
+    font-size: 23px;
+
+    margin: 10px 0;
+
+    line-height: 1.2;
+}
+
+
+/* =========================
+   LETTER TEXT
+========================= */
+
+.letter p {
+    color: #555;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================
+   BOTTOM POCKET
+========================= */
+
+.pocket {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 0;
+
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+
+    border-bottom: 110px solid #ff3f70;
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   TOP FLAP
+========================= */
+
+.flap {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 0;
+    height: 0;
+
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+
+    border-top: 110px solid #ff86a5;
+
+    transform-origin: top center;
+
+    transition:
+        transform 0.8s ease;
+
+    z-index: 4;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   OPEN
+========================= */
+
+
+/* Flap opens */
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+
+    z-index: 1;
+}
+
+
+/* Letter comes out */
+
+.envelope.open .letter {
+    transform: translateY(-135px);
+
+    z-index: 5;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.20);
+}
+
+
+/* Front cover goes behind letter */
+
+.envelope.open::before {
+    z-index: 2;
+}
+
+
+/* =========================
+   CLICK TEXT
+========================= */
+
+.click-text {
+    margin-top: 45px;
+
+    color: #9d2148;
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.3px;
+
+    animation: floating 1.5s ease-in-out infinite;
+}
+
+
+/* =========================
+   CLICK TEXT ANIMATION
+========================= */
+
+@keyframes floating {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    .envelope {
+        width: 290px;
+        height: 200px;
+    }
+
+    .letter {
+        width: 250px;
+        height: 175px;
+
+        left: 20px;
+        top: 12px;
+
+        padding: 18px;
+    }
+
+    .flap {
+        border-left-width: 145px;
+        border-right-width: 145px;
+        border-top-width: 100px;
+    }
+
+    .pocket {
+        border-left-width: 145px;
+        border-right-width: 145px;
+        border-bottom-width: 100px;
+    }
+
+    .letter h2 {
+        font-size: 20px;
+    }
+
+    .letter p {
+        font-size: 13px;
+    }
+
+    .click-text {
+        font-size: 17px;
+    }
+}
